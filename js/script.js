@@ -21,9 +21,33 @@ function getPasswordLength() {
 }
 
 // Add event listener to generate button
+
+
+function getCharacterTypes() {
+  var useNumbers = prompt("Include numbers?");
+  var useLowercase = prompt("Include lowercase characters?");
+  var useUppercase = prompt("Include uppercase characters?");
+  var useSpecialChars = prompt("Include special characters?");
+
+  if (!(useLowercase || useUppercase || useNumbers || useSpecialChars)) {
+    prompt("You must select at least one character type.");
+    return getCharacterTypes();
+  }
+  return {
+    useNumbers,
+    useLowercase,
+    useUppercase,
+    useSpecialChars,
+  };
+}
 generateBtn.addEventListener("click", function () {
   var length = getPasswordLength();
   if (length === null)
   return;
+var characterTypes = getCharacterTypes();
+if (!characterTypes)
+return;
 });
+
+
 
