@@ -40,6 +40,26 @@ function getCharacterTypes() {
     useSpecialChars,
   };
 }
+
+function generatePassword(length, characterTypes) {
+  var numberChars = "0123456789";
+  var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+  var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var specialChars = "!@#$%^&*()";
+  var availableChars = "";
+
+  if (characterTypes.useNumbers) availableChars += numberChars;
+  if (characterTypes.useLowercase) availableChars += lowercaseChars;
+  if (characterTypes.useUppercase) availableChars += uppercaseChars;
+  if (characterTypes.useSpecialChars) availableChars += specialChars;
+  var password = "";
+  for (var i = 0; i < length; i++) {
+   var randomIndex = Math.floor(Math.random() * availableChars.length);
+   password += availableChars.charAt(randomIndex);
+  }
+  return password;
+ }
+
 generateBtn.addEventListener("click", function () {
   var length = getPasswordLength();
   if (length === null)
@@ -47,7 +67,26 @@ generateBtn.addEventListener("click", function () {
 var characterTypes = getCharacterTypes();
 if (!characterTypes)
 return;
+
+var password = generatePassword(length, characterTypes);
+passwordText.value = password;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
